@@ -5,7 +5,7 @@ import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
 import restaurante from '../../assets/restaurante-fake.png'
-import {Card} from '../../components';
+import {Card, Restaurant} from '../../components';
 
 const Home = () => {
 
@@ -44,6 +44,7 @@ const Home = () => {
                     <Card photo={restaurante} title="nome do restaurante" />
                 </Carousel>
             </Search>
+            <Restaurant/>
         </Container>;
     </Wrapper>
     
