@@ -1,18 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {themeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 import {Reset} from 'styled-reset';
 
 import Home from './pages/Home';
-import theme from './theme';
+import theme from './theme.js';
 
 function App() {
   return (
-    <themeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Reset/>
       <Home/>
-    </themeProvider>
+    </ThemeProvider>
   );
 }
 
