@@ -25,4 +25,22 @@ export const RestaurantTitle = styled.span`
     font-size: 24px;
     font-weight: bold;
     line-height: 29px;
+    margin-bottom: 10px;
+`;
+
+export const RestaurantAdress = styled.span`
+    font-family: ${(props) => props.theme.fonts.regular};
+    color: ${(props) => props.theme.colors.text};
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 19px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+`;
+
+export const RestaurantPhoto = styled.img`
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    object-fit: cover;
 `;

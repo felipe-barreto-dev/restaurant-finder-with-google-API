@@ -4,14 +4,15 @@ import logo from '../../assets/logo.svg'
 import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
-import restaurante from '../../assets/restaurante-fake.png'
-import {Card, Restaurant} from '../../components';
+import restaurante from '../../assets/restaurante-fake.png';
+import {Card, Restaurant, Modal} from '../../components';
 
 const Home = () => {
 
     const [inputValue, setInputValue] = useState('');
+    const [modalOpened, setModalOpened] = useState(true);
 
-    let settings = {
+    const settings = {
         dots: false,
         infinite: true,
         speed: 300,
@@ -45,7 +46,15 @@ const Home = () => {
                 </Carousel>
             </Search>
             <Restaurant/>
+            <Restaurant/>
+            <Restaurant/>
+            <Restaurant/>
+            <Restaurant/>
+            <Restaurant/>
+            <Restaurant/>
+            <Restaurant/>
         </Container>;
+        <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />
     </Wrapper>
     
     
