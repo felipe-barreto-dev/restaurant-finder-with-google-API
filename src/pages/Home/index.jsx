@@ -3,6 +3,7 @@ import {Container, Search, Logo, Wrapper, CarouselTitle, Carousel} from './style
 import logo from '../../assets/logo.svg'
 import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
+import {useSelector} from 'react-redux';
 
 import restaurante from '../../assets/restaurante-fake.png';
 import {Card, Restaurant, Modal, Map} from '../../components';
@@ -12,6 +13,7 @@ const Home = () => {
     const [inputValue, setInputValue] = useState('');
     const [query, setQuery] = useState(null);
     const [modalOpened, setModalOpened] = useState(true);
+    const {restaurants} = useSelector((state) => state.restaurants);
 
     const settings = {
         dots: false,
@@ -54,14 +56,9 @@ const Home = () => {
                     <Card photo={restaurante} title="nome do restaurante" />
                 </Carousel>
             </Search>
-            <Restaurant/>
-            <Restaurant/>
-            <Restaurant/>
-            <Restaurant/>
-            <Restaurant/>
-            <Restaurant/>
-            <Restaurant/>
-            <Restaurant/>
+                {restaurants.map((restaurant) => {
+                    return <Restaurant key={restaurant.place_id} restaurant={restaurant} />
+                })}
         </Container>;
         <Map query={query} />
         <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />

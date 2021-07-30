@@ -30,7 +30,7 @@ export const RestaurantTitle = styled.span`
 
 export const RestaurantAdress = styled.span`
     font-family: ${(props) => props.theme.fonts.regular};
-    color: ${(props) => props.theme.colors.text};
+    color: black;
     font-size: 16px;
     font-weight: bold;
     line-height: 19px;
