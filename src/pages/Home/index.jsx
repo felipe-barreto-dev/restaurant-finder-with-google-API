@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Container, Search, Logo, Wrapper, CarouselTitle, Carousel} from './styles';
-import logo from '../../assets/logo.svg'
+import {Container, Search, Logo, Wrapper, CarouselTitle, Carousel, ModalTitle, ModalContent} from './styles';
+import logo from '../../assets/logo.svg';
 import TextField, {Input} from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 import {useSelector} from 'react-redux';
@@ -12,20 +12,29 @@ const Home = () => {
 
     const [inputValue, setInputValue] = useState('');
     const [query, setQuery] = useState(null);
-    const [modalOpened, setModalOpened] = useState(true);
-    const {restaurants} = useSelector((state) => state.restaurants);
+    const [placeId, setPlaceId] = useState(null);
+    const [modalOpened, setModalOpened] = useState(false);
+    const {restaurants, restaurantSelected} = useSelector((state) => state.restaurants);
+
+    const handleOpenedModal = (placeId) => {
+        setPlaceId(placeId);
+        setModalOpened(true);
+        console.log(restaurantSelected)
+    }
 
     const settings = {
+        className: "slider variable-width",
         dots: false,
         infinite: true,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        adaptativeHeight: true
+        centerMode: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: true,
+        autoplay: true,
       };
 
     function handleKeyPress(e) {
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
             setQuery(inputValue);
         }
     }
@@ -48,20 +57,24 @@ const Home = () => {
                 </TextField>
                 <CarouselTitle>Na Sua Área</CarouselTitle>
                 <Carousel {...settings}>
-                    <Card photo={restaurante} title="nome do restaurante" />
-                    <Card photo={restaurante} title="nome do restaurante" />
-                    <Card photo={restaurante} title="nome do restaurante" />
-                    <Card photo={restaurante} title="nome do restaurante" />
-                    <Card photo={restaurante} title="nome do restaurante" />
-                    <Card photo={restaurante} title="nome do restaurante" />
+                    {restaurants.map((restaurant) => {
+                        return <Card key={restaurant.place_id} photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante} title={restaurant.name} />
+                    })}
                 </Carousel>
             </Search>
                 {restaurants.map((restaurant) => {
-                    return <Restaurant key={restaurant.place_id} restaurant={restaurant} />
+                    return <Restaurant key={restaurant.place_id} restaurant={restaurant} onClick={() => handleOpenedModal(restaurant.place_id)} />
                 })}
         </Container>;
-        <Map query={query} />
-        <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />
+        <Map query={query} placeId={placeId} />
+        <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} >
+            <div>
+                <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+                <ModalContent>{restaurantSelected?.vicinity}</ModalContent>
+                <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
+                <ModalContent>{restaurantSelected?.opening_hours?.open_now ? 'Aberto agora :)' : 'Fechado no momento :('}</ModalContent>
+            </div>
+        </Modal>
     </Wrapper>
     
     

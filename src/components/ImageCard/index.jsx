@@ -10,6 +10,7 @@ const Card = styled.div`
     border-radius: 6px;
     background-image: url(${(props) => props.photo});
     background-size: cover;
+    margin-right: 10px;
 `;
 
 const Title = styled.span`

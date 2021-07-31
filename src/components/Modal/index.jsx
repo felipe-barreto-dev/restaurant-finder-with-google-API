@@ -4,7 +4,9 @@ import PortalModal from './Portal';
 
 import {Overlay, Dialog} from './Styles';
 
-const Modal = ({children, open, onClose}) => {
+import {useSelector} from 'react-redux';
+
+const Modal = ({open, onClose, children}) => {
 
     useEffect(() => {
 
