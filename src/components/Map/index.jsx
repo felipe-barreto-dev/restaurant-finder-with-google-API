@@ -53,7 +53,6 @@ export const MapContainer = (props) => {
 
         service.textSearch(request, (results, status) => {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                console.log(results);
                 dispatch(setRestaurants(results))
             }
         })
@@ -71,7 +70,6 @@ export const MapContainer = (props) => {
 
         service.nearbySearch(request, (results, status) => {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                console.log(results);
                 dispatch(setRestaurants(results));
             }
         })
