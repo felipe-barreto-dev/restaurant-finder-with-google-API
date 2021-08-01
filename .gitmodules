@@ -1,0 +1,3 @@
+[submodule "/.gitmodules"] 
+  path = /.gitmodules
+  url = git://https://github.com/felipe-barreto-dev/restaurant-finder-with-google-API
